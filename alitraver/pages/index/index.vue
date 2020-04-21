@@ -1,6 +1,6 @@
 <template>
 	<view >
-		<search></search>
+		<search>测试</search>
 	</view>
 </template>
 
