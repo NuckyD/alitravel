@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "飞猪旅游",
-  "usingComponents": {
-    "search": "/pages/index/components/search"
-  }
-}
