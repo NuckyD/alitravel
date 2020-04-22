@@ -1,14 +1,20 @@
 <template>
-	<view >
-		<search>测试</search>
+	<view>
+		<search></search>
+		<ticket></ticket>
+		<classify></classify>
 	</view>
 </template>
 
 <script>
 	import search from './components/search.vue'
+	import ticket from './components/ticket.vue'
+	import classify from './components/classify.vue'
 	export default {
 		components:{
-			search
+			search,
+			ticket,
+			classify
 		},
 		data() {
 			return {
