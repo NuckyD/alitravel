@@ -1,0 +1,1 @@
+<view class="ticket data-v-1f6bc834"><block wx:for="{{ticket}}" wx:for-item="item" wx:for-index="index" wx:key="index"><block class="data-v-1f6bc834"><view class="data-v-1f6bc834"><image src="{{item.image}}" mode="aspectFill" class="data-v-1f6bc834"></image><text class="data-v-1f6bc834">{{item.name}}</text></view></block></block></view>

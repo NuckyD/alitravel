@@ -1,0 +1,62 @@
+
+.search-code image.data-v-49656882 {
+	width: 50rpx;
+	height: 50rpx;
+}
+.search-code.data-v-49656882 {
+	width: 50rpx;
+	height: 50rpx;
+	padding: 0 15rpx;
+}
+.search-img.data-v-49656882 {
+	margin: auto 0 auto 20rpx;
+	width: 40rpx;
+	height: 40rpx;
+}
+.search.data-v-49656882 {
+	height: 70rpx;
+	line-height: 70rpx;
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: flex;
+	        flex-direction: flex;
+	background-color: #fff7d4;
+	border-top-left-radius: 50rpx;
+	border-bottom-left-radius: 50rpx;
+	border-bottom-right-radius: 50rpx;
+}
+.search input.data-v-49656882 {
+	height: 70rpx;
+	line-height: 70rpx;
+	width: 100%;
+	font-size: 30rpx;
+	color: #ffffff;
+}
+.search-cont.data-v-49656882 {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	height: 70rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	background: -webkit-linear-gradient(bottom, #ffe566 10%, #ffd300 100%);
+	background: linear-gradient(to top, #ffe566 10%, #ffd300 100%);
+	padding: 30rpx 0;
+}
+/*轮播 */
+.imageurl.data-v-49656882{
+		width: 100%;
+		height: 300rpx !important;
+}
+swiper.data-v-49656882{
+		height: 300rpx !important;
+}
+
