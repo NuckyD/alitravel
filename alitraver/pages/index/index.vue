@@ -3,7 +3,7 @@
 		<search></search>
 		<ticket></ticket>
 		<classify></classify>
-		<view>test</view>
+		<view></view>
 	</view>
 </template>
 
