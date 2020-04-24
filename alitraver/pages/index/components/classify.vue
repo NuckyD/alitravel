@@ -62,7 +62,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		width: 100%;
-		/* -webkit-flex-wrap:wrap; */
+		-webkit-flex-wrap:wrap;
 		overflow: hidden;
 		border: 1rpx solid #eeeeee;
 		border-radius: 10rpx;

@@ -1,1 +1,1 @@
-<view><search vue-id="1" bind:__l="__l"></search><ticket vue-id="2" bind:__l="__l"></ticket><classify vue-id="3" bind:__l="__l"></classify><view></view></view>
+<view><search vue-id="1" bind:__l="__l"></search><ticket vue-id="2" bind:__l="__l"></ticket><classify vue-id="3" bind:__l="__l"></classify><content class="{{[(isFixed)?'is_fixed':'']}}" vue-id="4" id="boxFixed" bind:__l="__l"></content><view style="height:2000rpx;"></view></view>
