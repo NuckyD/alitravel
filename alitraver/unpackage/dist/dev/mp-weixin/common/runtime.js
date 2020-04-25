@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/index/components/classify":1,"pages/index/components/content":1,"pages/index/components/search":1,"pages/index/components/ticket":1};
+/******/ 		var cssChunks = {"pages/index/components/article":1,"pages/index/components/classify":1,"pages/index/components/content":1,"pages/index/components/search":1,"pages/index/components/ticket":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"pages/index/components/classify":"pages/index/components/classify","pages/index/components/content":"pages/index/components/content","pages/index/components/search":"pages/index/components/search","pages/index/components/ticket":"pages/index/components/ticket"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"pages/index/components/article":"pages/index/components/article","pages/index/components/classify":"pages/index/components/classify","pages/index/components/content":"pages/index/components/content","pages/index/components/search":"pages/index/components/search","pages/index/components/ticket":"pages/index/components/ticket"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
@@ -129,6 +129,7 @@
 /******/ 				linkTag.onerror = function(event) {
 /******/ 					var request = event && event.target && event.target.src || fullhref;
 /******/ 					var err = new Error("Loading CSS chunk " + chunkId + " failed.\n(" + request + ")");
+/******/ 					err.code = "CSS_CHUNK_LOAD_FAILED";
 /******/ 					err.request = request;
 /******/ 					delete installedCssChunks[chunkId]
 /******/ 					linkTag.parentNode.removeChild(linkTag)

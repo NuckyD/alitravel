@@ -4,7 +4,8 @@
 		<ticket></ticket>
 		<classify></classify>
 		<content id="boxFixed" :class="{'is_fixed': isFixed}"></content>
-		<view style="height: 2000upx;"></view>
+		<view style="height: 150upx"></view>
+		<articleA></articleA>
 	</view>
 </template>
 
@@ -13,12 +14,14 @@
 	import ticket from './components/ticket.vue'
 	import classify from './components/classify.vue'
 	import content from './components/content.vue'
+	import articleA from './components/article.vue'
 	export default {
 		components:{
 			search,
 			ticket,
 			classify,
-			content
+			content,
+			articleA
 		},
 		data() {
 			return {

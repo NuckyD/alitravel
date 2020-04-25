@@ -22,6 +22,7 @@
 	color: #9EA0A5;
 }
 .activea.data-v-224bb2e2 {
+	background-image: -webkit-gradient(linear, left top, right top, from(#ccffff), to(#ffcc00));
 	background-image: -webkit-linear-gradient(left, #ccffff 0%, #ffcc00 100%);
 	background-image: linear-gradient(to right, #ccffff 0%, #ffcc00 100%);
 	border-top-right-radius: 50rpx;
