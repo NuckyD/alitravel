@@ -8532,7 +8532,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞猪旅游" }, "pages/strategy/strategy": { "navigationBarTitleText": "攻略", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "飞猪旅游", "navigationBarBackgroundColor": "#ffd300", "backgroundColor": "#ffd300" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞猪旅游" }, "pages/strategy/strategy": { "navigationBarTitleText": "攻略" }, "pages/my/my": { "navigationBarTitleText": "我的" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "飞猪旅游", "navigationBarBackgroundColor": "#ffd300", "backgroundColor": "#ffd300" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
