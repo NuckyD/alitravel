@@ -1,9 +1,9 @@
 <template>
 	<view>
-		<search></search>
+		<search :banner="banner"></search>
 		<ticket></ticket>
 		<classify></classify>
-		<content id="boxFixed" :class="{'is_fixed': isFixed}"></content>
+		<content :tab="tab" id="boxFixed" :class="{'is_fixed': isFixed}"></content>
 		<view style="height: 150upx"></view>
 		<articleA></articleA>
 	</view>
@@ -15,6 +15,9 @@
 	import classify from './components/classify.vue'
 	import content from './components/content.vue'
 	import articleA from './components/article.vue'
+	
+	//打印
+	var {log} = console
 	export default {
 		components:{
 			search,
@@ -23,14 +26,42 @@
 			content,
 			articleA
 		},
+		
 		data() {
 			return {
 				title: 'Hello',
 				isFixed: false,
 				rect: '',
-				menutop:''
+				menutop:'',
+				banner:[],
+				tab:[]
 			}
 		},
+		
+		created() {
+			//请求轮播图数据
+			const db = wx.cloud.database()
+			const banner = db.collection('banner')
+			banner.get()
+			.then((res) => {
+				/* console.log(res) */
+				this.banner = res.data
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+			
+			//请求tab切换
+			const tab = db.collection('tab')
+			tab.get()
+			.then((res) => {
+				this.tab = res.data
+			})
+			.catch((err) =>{
+				log(err)
+			})
+		},
+		
 		onLoad() {
 			const query = uni.createSelectorQuery().in(this);
 			query.select('#boxFixed').boundingClientRect(data => {

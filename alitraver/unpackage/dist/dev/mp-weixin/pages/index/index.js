@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var search = function search() {__webpack_require__.e(/*! require.ensure | pages/index/components/search */ "pages/index/components/search").then((function () {return resolve(__webpack_require__(/*! ./components/search.vue */ 35));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ticket = function ticket() {__webpack_require__.e(/*! require.ensure | pages/index/components/ticket */ "pages/index/components/ticket").then((function () {return resolve(__webpack_require__(/*! ./components/ticket.vue */ 42));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var classify = function classify() {__webpack_require__.e(/*! require.ensure | pages/index/components/classify */ "pages/index/components/classify").then((function () {return resolve(__webpack_require__(/*! ./components/classify.vue */ 49));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var content = function content() {__webpack_require__.e(/*! require.ensure | pages/index/components/content */ "pages/index/components/content").then((function () {return resolve(__webpack_require__(/*! ./components/content.vue */ 56));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var articleA = function articleA() {__webpack_require__.e(/*! require.ensure | pages/index/components/article */ "pages/index/components/article").then((function () {return resolve(__webpack_require__(/*! ./components/article.vue */ 63));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var search = function search() {__webpack_require__.e(/*! require.ensure | pages/index/components/search */ "pages/index/components/search").then((function () {return resolve(__webpack_require__(/*! ./components/search.vue */ 35));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ticket = function ticket() {__webpack_require__.e(/*! require.ensure | pages/index/components/ticket */ "pages/index/components/ticket").then((function () {return resolve(__webpack_require__(/*! ./components/ticket.vue */ 42));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var classify = function classify() {__webpack_require__.e(/*! require.ensure | pages/index/components/classify */ "pages/index/components/classify").then((function () {return resolve(__webpack_require__(/*! ./components/classify.vue */ 49));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var content = function content() {__webpack_require__.e(/*! require.ensure | pages/index/components/content */ "pages/index/components/content").then((function () {return resolve(__webpack_require__(/*! ./components/content.vue */ 56));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var articleA = function articleA() {__webpack_require__.e(/*! require.ensure | pages/index/components/article */ "pages/index/components/article").then((function () {return resolve(__webpack_require__(/*! ./components/article.vue */ 63));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -156,6 +156,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+//打印
+var _console = console,log = _console.log;var _default =
 {
   components: {
     search: search,
@@ -164,18 +167,46 @@ __webpack_require__.r(__webpack_exports__);
     content: content,
     articleA: articleA },
 
+
   data: function data() {
     return {
       title: 'Hello',
       isFixed: false,
       rect: '',
-      menutop: '' };
+      menutop: '',
+      banner: [],
+      tab: [] };
 
   },
-  onLoad: function onLoad() {var _this = this;
+
+  created: function created() {var _this = this;
+    //请求轮播图数据
+    var db = wx.cloud.database();
+    var banner = db.collection('banner');
+    banner.get().
+    then(function (res) {
+      /* console.log(res) */
+      _this.banner = res.data;
+    }).
+    catch(function (err) {
+      console.log(err);
+    });
+
+    //请求tab切换
+    var tab = db.collection('tab');
+    tab.get().
+    then(function (res) {
+      _this.tab = res.data;
+    }).
+    catch(function (err) {
+      log(err);
+    });
+  },
+
+  onLoad: function onLoad() {var _this2 = this;
     var query = uni.createSelectorQuery().in(this);
     query.select('#boxFixed').boundingClientRect(function (data) {
-      _this.menutop = data.top;
+      _this2.menutop = data.top;
     }).exec();
   },
   onPageScroll: function onPageScroll(e) {

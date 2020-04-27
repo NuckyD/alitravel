@@ -20,6 +20,7 @@
 }
 .con-text-b.data-v-224bb2e2{
 	color: #9EA0A5;
+	font-size: 20rpx;
 }
 .activea.data-v-224bb2e2 {
 	background-image: -webkit-gradient(linear, left top, right top, from(#ccffff), to(#ffcc00));

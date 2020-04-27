@@ -152,19 +152,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _default =
 {
   name: 'search',
+  props: {
+    banner: Array },
+
   data: function data() {
-    return {
-      banner: [
-      {
-        "image": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3104782390,412364191&fm=26&gp=0.jpg" },
-
-      {
-        "image": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3104782390,412364191&fm=26&gp=0.jpg" },
-
-      {
-        "image": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3104782390,412364191&fm=26&gp=0.jpg" }] };
-
-
+    return {};
 
   } };exports.default = _default;
 

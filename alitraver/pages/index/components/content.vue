@@ -2,13 +2,13 @@
 	<view>
 		<scroll-view class="scroll" scroll-x="true" scroll-with-animation="true">
 			<view>
-				<block v-for="(item,index) in contentData" :key="index">
+				<block v-for="(item,index) in tab" :key="index">
 					<view class="list-cont" :class="{activea : index == num}" @click="tabs(index)">
 						<view >
-							<text class="con-text-a">{{item.title}}</text>
+							<text class="con-text-a">{{item.name}}</text>
 						</view>
 						<view>
-							<text class="con-text-b" :class="{activeb : index == num}">{{item.labei}}</text>
+							<text class="con-text-b" :class="{activeb : index == num}">{{item.title}}</text>
 						</view>
 					</view>
 				</block>
@@ -20,35 +20,12 @@
 <script>
 	export default{
 		name:"tab",
+		props:{
+			tab:Array
+		},
 		data(){
 			return{
-				num: 0,
-				contentData:[
-					{
-						title: "推荐",
-						labei: "猜你喜欢"
-					},
-					{
-						title: "推荐",
-						labei: "猜你喜欢"
-					},
-					{
-						title: "推荐",
-						labei: "猜你喜欢"
-					},
-					{
-						title: "推荐",
-						labei: "猜你喜欢"
-					},
-					{
-						title: "推荐",
-						labei: "猜你喜欢"
-					},
-					{
-						title: "推荐",
-						labei: "猜你喜欢"
-					}
-				]
+				num: 0
 			}
 		},
 		methods:{
@@ -81,6 +58,7 @@
 	}
 	.con-text-b{
 		color: #9EA0A5;
+		font-size: 20upx;
 	}
 	.activea {
 		background-image: linear-gradient(to right, #ccffff 0%, #ffcc00 100%);
