@@ -1,55 +1,34 @@
 <template>
 	<view class="active">
-		<block v-for="(item,index) in articles" :key="index">
-			<view class="content-article">
-				<view class="content-img">
-					<image :src ="item.image" mode="aspectFill" class=""></image>
-				</view>
-				<view class="active-introduce">
-					<view class="active-name">{{item.name}}</view>
-					<view class="active-description">{{item.description}}</view>
-					<view class="active-label">{{item.label}}</view>
-					<view class="purchases">
-						<text class="active-price">￥{{item.price}}</text>
-						<text class="active-purchase">{{item.purchase}}人已购买</text>
+		<view class="conteng">
+			<block v-for="(item,index) in articles" :key="index">
+				<view class="content-article">
+					<view class="content-img">
+						<image :src ="item.image" mode="aspectFill" class=""></image>
+					</view>
+					<view class="active-introduce">
+						<view class="active-title">{{item.title}}</view>
+						<view class="active-list">{{item.list}}</view>
+						<view class="active-label">{{item.label}}</view>
+						<view class="buys">
+							<text class="active-price">￥{{item.price}}</text>
+							<text class="active-buy">{{item.buy}}人已购买</text>
+						</view>
 					</view>
 				</view>
-			</view>
-		</block>
+			</block>
+		</view>
 	</view>
 </template>
 
 <script>
 	export default{
 		name: "articleA",
+		props:{
+			articles:Array
+		},
 		data(){
 			return{
-				articles: [
-					{
-						"image":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3104782390,412364191&fm=26&gp=0.jpg",
-						"name":"三亚租车",
-						"description":"描述描述啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
-						"label":"标签",
-						"price":80,
-						"purchase":100
-					},
-					{
-						"image":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3104782390,412364191&fm=26&gp=0.jpg",
-						"name":"三亚租车",
-						"description":"描述描述啊啊啊啊啊啊啊啊",
-						"label":"标签",
-						"price":80,
-						"purchase":100
-					},
-					{
-						"image":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3104782390,412364191&fm=26&gp=0.jpg",
-						"name":"三亚租车",
-						"description":"描述描述啊啊啊啊啊啊啊啊",
-						"label":"标签",
-						"price":80,
-						"purchase":100
-					}
-				]
 			}
 		}
 	}
@@ -58,16 +37,16 @@
 <style scoped>
 	.active {
 		margin:0 20upx;
+	}
+	.conteng{
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: warp;
 		justify-content: space-between;
 		width: 100%;
 		-webkit-flex-wrap: wrap;
 		overflow: hidden;
 	}
-	.cotent{
-		
-	}
+	
 	.content-article{
 		width: 48%;
 		flex-direction: column;
@@ -76,25 +55,25 @@
 	}
 	.content-img{
 		height: 400upx !important;
-		object-fit:cover;
+		object-fit: cover;
 		overflow: hidden;
 	}
 	.content-img image{
 		width: 100% !important;
 		height: 100% !important;
 		object-fit: cover;
-		border-radius: 10upx;
+		border-radius: 10rpx;
 	}
-	.active-name{
+	.active-title{
 		font-size: 32upx;
-		color: #D0B083;
+		color: #d0b083;
 		margin: 10upx 0;
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 1;
 		overflow: hidden;
 	}
-	.active-introduction{
+	.active-list{
 		font-size: 32upx;
 		color: #444444;
 		font-weight: bold;
@@ -110,19 +89,19 @@
 		color: #D0B083;
 		padding: 10upx 0;
 	}
-	.purchases{
+	.buys{
 		display: flex;
 		align-items: conter;
 		padding-bottom: 10upx;
 	}
 	.active-price{
 		font-size: 36upx;
-		color: #f56426;
+		color: #ff6b28;
 		padding-right: 9upx;
 	}
-	.active-purchase{
+	.active-buy{
 		font-size: 30upx;
-		color: #CACACA;
+		color: #cacaca;
 	}
 	.active-introduce{
 		padding-left: 10upx;

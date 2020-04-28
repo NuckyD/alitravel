@@ -3,7 +3,7 @@
 		<scroll-view class="scroll" scroll-x="true" scroll-with-animation="true">
 			<view>
 				<block v-for="(item,index) in tab" :key="index">
-					<view class="list-cont" :class="{activea : index == num}" @click="tabs(index)">
+					<view class="list-cont" :class="{activea : index == num}" @click="tabs(index, item.nav)">
 						<view >
 							<text class="con-text-a">{{item.name}}</text>
 						</view>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+	// 引入攻略列表的数据库接口
+	import {datalist} from '../../../common/cloudfun.js'
 	export default{
 		name:"tab",
 		props:{
@@ -29,8 +31,25 @@
 			}
 		},
 		methods:{
-			tabs(index){
+			tabs(index,nav){
 				this.num = index
+				//加载状态修改
+				let loadingstatus = true
+				this.$store.commit('loadmuta', loadingstatus)
+				
+				datalist(nav)
+				.then((res) => {
+					//console.log(res)
+					// vuex传值 
+					let listdata = res.data
+					this.$store.commit('listmuta', listdata)
+					//加载状态修改
+					let loadingstatus = false
+					this.$store.commit('loadmuta', loadingstatus)
+				})
+				.catch((err) => {
+					console.log(err)
+				})
 			}
 		}
 	}

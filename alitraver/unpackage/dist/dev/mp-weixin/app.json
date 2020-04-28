@@ -37,6 +37,7 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap5.json"
+  "usingComponents": {
+    "load-list": "/element/loading"
+  }
 }

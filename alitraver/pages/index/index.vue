@@ -4,8 +4,9 @@
 		<ticket></ticket>
 		<classify></classify>
 		<content :tab="tab" id="boxFixed" :class="{'is_fixed': isFixed}"></content>
-		<view style="height: 150upx"></view>
-		<articleA></articleA>
+		<view style="height: 140upx"></view>
+		<load-list v-if="loadingstatus"></load-list>
+		<articleA :articles="articles" v-if="!loadingstatus"></articleA>
 	</view>
 </template>
 
@@ -15,7 +16,8 @@
 	import classify from './components/classify.vue'
 	import content from './components/content.vue'
 	import articleA from './components/article.vue'
-	
+	import {data, datalist} from '../../common/cloudfun.js'
+	import {mapState} from 'vuex'
 	//打印
 	var {log} = console
 	export default {
@@ -32,34 +34,29 @@
 				title: 'Hello',
 				isFixed: false,
 				rect: '',
-				menutop:'',
-				banner:[],
-				tab:[]
+				menutop: '',
+				banner: [],
+				tab: [],
+				loadingstatus: false,
+				articles: []
 			}
 		},
 		
 		created() {
-			//请求轮播图数据
-			const db = wx.cloud.database()
-			const banner = db.collection('banner')
-			banner.get()
+			const banner = 'banner'
+			const tab = 'tab'
+			const article = 'attract'
+			Promise.all([data(banner), data(tab), datalist(article)])
 			.then((res) => {
-				/* console.log(res) */
-				this.banner = res.data
+				console.log(res)
+				this.banner = res[0].data
+				this.tab = res[1].data
+				this.articles = res[2].data
 			})
 			.catch((err) => {
 				console.log(err)
 			})
 			
-			//请求tab切换
-			const tab = db.collection('tab')
-			tab.get()
-			.then((res) => {
-				this.tab = res.data
-			})
-			.catch((err) =>{
-				log(err)
-			})
 		},
 		
 		onLoad() {
@@ -71,6 +68,7 @@
 		onPageScroll(e){
 			this.rect = e.scrollTop
 		},
+		//计算属性会时刻监听数据变化，只要数据发生变化，计算属性就会执行
 		computed: {
 			namepage(){
 				if(this.rect > this.menutop){
@@ -78,6 +76,15 @@
 				}else {
 					this.isFixed = false
 				}
+			},
+			// 取出vuex数据仓库的数据
+			...mapState(['list','loading']),
+			// 取到tab切换的数据
+			count(){
+				this.articles = this.list.listing
+			},
+			countload(){
+				this.loadingstatus = this.loading.loadingstatus
 			}
 		}
 	}
