@@ -48,7 +48,7 @@
 			const article = 'attract'
 			Promise.all([data(banner), data(tab), datalist(article)])
 			.then((res) => {
-				console.log(res)
+				//console.log(res)
 				this.banner = res[0].data
 				this.tab = res[1].data
 				this.articles = res[2].data
