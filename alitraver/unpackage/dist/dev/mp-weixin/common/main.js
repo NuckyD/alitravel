@@ -17,8 +17,16 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ./store/store.js */ 
 _vue.default.prototype.$store = _store.default;
 
 // 引入tab切换的loading
-var loader = function loader() {__webpack_require__.e(/*! require.ensure | element/loading */ "element/loading").then((function () {return resolve(__webpack_require__(/*! ./element/loading.vue */ 80));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+var loader = function loader() {__webpack_require__.e(/*! require.ensure | element/loading */ "element/loading").then((function () {return resolve(__webpack_require__(/*! ./element/loading.vue */ 38));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 _vue.default.component('load-list', loader);
+
+// 引入没有数据的提示
+var nonedata = function nonedata() {__webpack_require__.e(/*! require.ensure | element/none */ "element/none").then((function () {return resolve(__webpack_require__(/*! ./element/none.vue */ 96));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+_vue.default.component('none-data', nonedata);
+
+// 进入页面的loading加载
+var homeload = function homeload() {__webpack_require__.e(/*! require.ensure | element/homeload */ "element/homeload").then((function () {return resolve(__webpack_require__(/*! ./element/homeload.vue */ 104));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+_vue.default.component('home-load', homeload);
 
 _App.default.mpType = 'app';
 

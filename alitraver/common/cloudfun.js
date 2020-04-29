@@ -14,9 +14,9 @@ var data = function(table){
 	})
 }
 
-var datalist = function(table,pageNumber){
+var datalist = function(table, pageNumber){
 	return new Promise((resolve,reject) => {
-		const tables = db.collection(table).limit(6)
+		const tables = db.collection(table).limit(6).skip((pageNumber - 1) * 6)
 		tables.get()
 		.then((res) => {
 			resolve(res)

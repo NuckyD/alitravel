@@ -5,26 +5,39 @@ Vue.use(Vuex)
 
 // 首页tab切换传输存储的值
 const list = {
-	listing: []
+	listing: [],
+	nonedata: ''
 }
 
 const loading = {
 	loadingstatus: ''
 }
+
+const navdata = {
+	loadingstatus: '',
+	nav: 'recomment',
+	pageNumber: 1,
+	loadMore: '',
+	loadMoreStatus:'',
+	nonedata: ''
+}
+
 // 数据仓库
 const state = {
 	list,
-	loading
+	loading,
+	navdata
 }
 
 export default new Vuex.Store({
 	state,
 	// 同步操作
 	mutations:{
-		listmuta(state, listdata){
-			//console.log(listdata)
+		listmuta(state, list){
+			console.log(list)
 			state.list = {
-				listing:listdata
+				listing:list.listdata,
+				nonedata:list.nonedata
 			}
 		},
 		loadmuta(state, loadingstatus){
@@ -32,6 +45,17 @@ export default new Vuex.Store({
 			state.loading = {
 				loadingstatus:loadingstatus
 			}
+		},
+		navmuta(state, pullobj){
+			state.navdata = {
+				loadingstatus:pullobj.loadingstatus,
+				nav: pullobj.nav,
+				pageNumber: pullobj.pageNumber,
+				loadMore: pullobj.loadMore,
+				loadMoreStatus: pullobj.loadMoreStatus,
+				nonedata: pullobj.nonedata
+			}
+			
 		}
 	}
 })

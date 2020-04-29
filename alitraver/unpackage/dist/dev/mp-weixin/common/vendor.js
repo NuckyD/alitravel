@@ -8694,32 +8694,56 @@ _vue.default.use(_vuex.default);
 
 // 首页tab切换传输存储的值
 var list = {
-  listing: [] };
+  listing: [],
+  nonedata: '' };
 
 
 var loading = {
   loadingstatus: '' };
 
+
+var navdata = {
+  loadingstatus: '',
+  nav: 'recomment',
+  pageNumber: 1,
+  loadMore: '',
+  loadMoreStatus: '',
+  nonedata: '' };
+
+
 // 数据仓库
 var state = {
   list: list,
-  loading: loading };var _default =
+  loading: loading,
+  navdata: navdata };var _default =
 
 
 new _vuex.default.Store({
   state: state,
   // 同步操作
   mutations: {
-    listmuta: function listmuta(state, listdata) {
-      //console.log(listdata)
+    listmuta: function listmuta(state, list) {
+      console.log(list);
       state.list = {
-        listing: listdata };
+        listing: list.listdata,
+        nonedata: list.nonedata };
 
     },
     loadmuta: function loadmuta(state, loadingstatus) {
       //console.log(loadingstatus)
       state.loading = {
         loadingstatus: loadingstatus };
+
+    },
+    navmuta: function navmuta(state, pullobj) {
+      state.navdata = {
+        loadingstatus: pullobj.loadingstatus,
+        nav: pullobj.nav,
+        pageNumber: pullobj.pageNumber,
+        loadMore: pullobj.loadMore,
+        loadMoreStatus: pullobj.loadMoreStatus,
+        nonedata: pullobj.nonedata };
+
 
     } } });exports.default = _default;
 
@@ -9706,7 +9730,7 @@ var data = function data(table) {
 
 var datalist = function datalist(table, pageNumber) {
   return new Promise(function (resolve, reject) {
-    var tables = db.collection(table).limit(6);
+    var tables = db.collection(table).limit(6).skip((pageNumber - 1) * 6);
     tables.get().
     then(function (res) {
       resolve(res);

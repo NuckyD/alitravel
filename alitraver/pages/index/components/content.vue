@@ -31,18 +31,38 @@
 			}
 		},
 		methods:{
-			tabs(index,nav){
+			tabs(index, nav){
 				this.num = index
 				//加载状态修改
 				let loadingstatus = true
-				this.$store.commit('loadmuta', loadingstatus)
+				let pageNumber = 1
+				let loadMore = false
+				let loadMoreStatus = 'loading'
+				let nonedata = false
+				let pullobj = {
+					loadingstatus:loadingstatus,
+					nav:nav,
+					pageNumber:pageNumber,
+					loadMore:loadMore,
+					loadMoreStatus:loadMoreStatus,
+					nonedata:nonedata
+				}
+				this.$store.commit('navmuta', pullobj)//存储在仓库
 				
-				datalist(nav)
+				datalist(nav, pageNumber)
 				.then((res) => {
 					//console.log(res)
 					// vuex传值 
 					let listdata = res.data
-					this.$store.commit('listmuta', listdata)
+					let nonedata = false
+					if(res.data.length == 0){
+						nonedata = true
+					}
+					let list = {
+						listdata: listdata,
+						nonedata: nonedata
+					}
+					this.$store.commit('listmuta', list)
 					//加载状态修改
 					let loadingstatus = false
 					this.$store.commit('loadmuta', loadingstatus)

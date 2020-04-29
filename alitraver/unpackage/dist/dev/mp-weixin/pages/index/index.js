@@ -159,8 +159,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
 var _cloudfun = __webpack_require__(/*! ../../common/cloudfun.js */ 23);
-var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var search = function search() {__webpack_require__.e(/*! require.ensure | pages/index/components/search */ "pages/index/components/search").then((function () {return resolve(__webpack_require__(/*! ./components/search.vue */ 38));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ticket = function ticket() {__webpack_require__.e(/*! require.ensure | pages/index/components/ticket */ "pages/index/components/ticket").then((function () {return resolve(__webpack_require__(/*! ./components/ticket.vue */ 45));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var classify = function classify() {__webpack_require__.e(/*! require.ensure | pages/index/components/classify */ "pages/index/components/classify").then((function () {return resolve(__webpack_require__(/*! ./components/classify.vue */ 52));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var content = function content() {__webpack_require__.e(/*! require.ensure | pages/index/components/content */ "pages/index/components/content").then((function () {return resolve(__webpack_require__(/*! ./components/content.vue */ 59));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var articleA = function articleA() {__webpack_require__.e(/*! require.ensure | pages/index/components/article */ "pages/index/components/article").then((function () {return resolve(__webpack_require__(/*! ./components/article.vue */ 66));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var search = function search() {__webpack_require__.e(/*! require.ensure | pages/index/components/search */ "pages/index/components/search").then((function () {return resolve(__webpack_require__(/*! ./components/search.vue */ 45));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ticket = function ticket() {__webpack_require__.e(/*! require.ensure | pages/index/components/ticket */ "pages/index/components/ticket").then((function () {return resolve(__webpack_require__(/*! ./components/ticket.vue */ 52));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var classify = function classify() {__webpack_require__.e(/*! require.ensure | pages/index/components/classify */ "pages/index/components/classify").then((function () {return resolve(__webpack_require__(/*! ./components/classify.vue */ 59));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var content = function content() {__webpack_require__.e(/*! require.ensure | pages/index/components/content */ "pages/index/components/content").then((function () {return resolve(__webpack_require__(/*! ./components/content.vue */ 66));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var articleA = function articleA() {__webpack_require__.e(/*! require.ensure | pages/index/components/article */ "pages/index/components/article").then((function () {return resolve(__webpack_require__(/*! ./components/article.vue */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniLoadMore = function uniLoadMore() {__webpack_require__.e(/*! require.ensure | common/components/uni-load-more/uni-load-more */ "common/components/uni-load-more/uni-load-more").then((function () {return resolve(__webpack_require__(/*! ../../common/components/uni-load-more/uni-load-more.vue */ 88));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 //打印
 var _console = console,log = _console.log;var _default =
 {
@@ -169,7 +176,8 @@ var _console = console,log = _console.log;var _default =
     ticket: ticket,
     classify: classify,
     content: content,
-    articleA: articleA },
+    articleA: articleA,
+    uniLoadMore: uniLoadMore },
 
 
   data: function data() {
@@ -181,20 +189,26 @@ var _console = console,log = _console.log;var _default =
       banner: [],
       tab: [],
       loadingstatus: false,
-      articles: [] };
+      articles: [],
+      pageNumber: 1,
+      nav: 'recomment',
+      loadMore: false,
+      loadMoreStatus: 'loading',
+      nonedata: false,
+      homeload: true };
 
   },
 
   created: function created() {var _this = this;
     var banner = 'banner';
     var tab = 'tab';
-    var article = 'attract';
-    Promise.all([(0, _cloudfun.data)(banner), (0, _cloudfun.data)(tab), (0, _cloudfun.datalist)(article)]).
+    Promise.all([(0, _cloudfun.data)(banner), (0, _cloudfun.data)(tab), (0, _cloudfun.datalist)(this.nav, this.pageNumber)]).
     then(function (res) {
-      console.log(res);
+      //console.log(res)
       _this.banner = res[0].data;
       _this.tab = res[1].data;
       _this.articles = res[2].data;
+      _this.homeload = false;
     }).
     catch(function (err) {
       console.log(err);
@@ -208,9 +222,40 @@ var _console = console,log = _console.log;var _default =
       _this2.menutop = data.top;
     }).exec();
   },
+
   onPageScroll: function onPageScroll(e) {
     this.rect = e.scrollTop;
   },
+
+  //触底，上拉加载
+  onReachBottom: function onReachBottom() {
+    if (!this.nonedata) {//有数据才加载更多
+      this.loadMore = true;
+      this.loadMoreStatus = 'loading';
+      this.pageNumber++;
+      this.pullon();
+    }
+  },
+
+  methods: {
+    pullon: function pullon() {var _this3 = this;
+      log(this.nav);
+      log(this.pageNumber);
+      (0, _cloudfun.datalist)(this.nav, this.pageNumber).
+      then(function (res) {
+        if (res.data.length == 0) {
+          _this3.loadMoreStatus = 'noMore';
+        } else {
+          _this3.articles = [].concat(_toConsumableArray(_this3.articles), _toConsumableArray(res.data));
+        }
+
+      }).
+      catch(function (err) {
+        log(err);
+      });
+    } },
+
+
   //计算属性会时刻监听数据变化，只要数据发生变化，计算属性就会执行
   computed: _objectSpread({
     namepage: function namepage() {
@@ -221,13 +266,25 @@ var _console = console,log = _console.log;var _default =
       }
     } },
 
-  (0, _vuex.mapState)(['list', 'loading']), {
+  (0, _vuex.mapState)(['list', 'loading', 'navdata']), {
     // 取到tab切换的数据
     count: function count() {
+      console.log(this.list);
+      console.log(this.list.nonedata);
       this.articles = this.list.listing;
+      this.nonedata = this.list.nonedata;
     },
     countload: function countload() {
       this.loadingstatus = this.loading.loadingstatus;
+    },
+    //获取切换tab数据
+    navcount: function navcount() {
+      this.loadingstatus = this.navdata.loadingstatus;
+      this.nav = this.navdata.nav;
+      this.pageNumber = this.navdata.pageNumber;
+      this.loadMore = this.navdata.loadMore;
+      this.loadMoreStatus = this.navdata.loadMoreStatus;
+      this.nonedata = this.navdata.nonedata;
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
