@@ -1,0 +1,60 @@
+
+.address-text.data-v-d9dfe956 {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.address-text image.data-v-d9dfe956 {
+	width: 33rpx;
+	height: 33rpx;
+	padding-left: 30rpx;
+}
+.address.data-v-d9dfe956 {
+	position: relative;
+	height: 400rpx;
+}
+.address-list.data-v-d9dfe956 {
+	position: absolute;
+	left: 50rpx;
+	top: 100rpx;
+	z-index: 999;
+}
+.address-img.data-v-d9dfe956 {
+	width: 100%;
+	height: 400rpx;
+}
+.address-img image.data-v-d9dfe956 {
+	width: 750rpx !important;
+	height: 400rpx;
+}
+.words.data-v-d9dfe956 {
+	font-size: 50rpx;
+	color: #ffffff;
+	font-weight: bold;
+}
+.words-eng.data-v-d9dfe956 {
+	font-size: 30rpx;
+	color: #ffffff;
+}
+.back.data-v-d9dfe956 {
+	background: rgba(0, 51, 0, 0.3);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 400rpx;
+	width: 100%;
+}
+/* 机票 */
+.Plane image.data-v-d9dfe956 {
+	width: 100%;
+	border-radius: 20rpx;
+	height: 150rpx;
+}
+.Plane.data-v-d9dfe956 {
+	margin: 40rpx 20rpx;
+	height: 150rpx;
+}
+
