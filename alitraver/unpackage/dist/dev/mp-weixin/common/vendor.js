@@ -8532,7 +8532,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞猪旅游" }, "pages/strategy/strategy": { "navigationBarTitleText": "攻略" }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "飞猪旅游", "navigationBarBackgroundColor": "#ffd300", "backgroundColor": "#ffd300" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞猪旅游", "usingComponents": { "search": "/pages/index/components/search", "ticket": "/pages/index/components/ticket", "classify": "/pages/index/components/classify", "content": "/pages/index/components/content", "article-a": "/pages/index/components/article", "uni-load-more": "/common/components/uni-load-more/uni-load-more" }, "usingAutoImportComponents": {} }, "pages/strategy/strategy": { "navigationBarTitleText": "攻略", "usingComponents": { "address-a": "/pages/strategy/components/address", "locality": "/pages/strategy/components/locality", "content-a": "/pages/strategy/components/content" }, "usingAutoImportComponents": {} }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "飞猪旅游", "navigationBarBackgroundColor": "#ffd300", "backgroundColor": "#ffd300" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -8711,11 +8711,16 @@ var navdata = {
   nonedata: '' };
 
 
+var cityData = {
+  city: '' };
+
+
 // 数据仓库
 var state = {
   list: list,
   loading: loading,
-  navdata: navdata };var _default =
+  navdata: navdata,
+  cityData: cityData };var _default =
 
 
 new _vuex.default.Store({
@@ -8744,6 +8749,11 @@ new _vuex.default.Store({
         loadMoreStatus: pullobj.loadMoreStatus,
         nonedata: pullobj.nonedata };
 
+
+    },
+    citymuta: function citymuta(state, city) {
+      state.cityData = {
+        city: city };
 
     } } });exports.default = _default;
 
@@ -9763,6 +9773,36 @@ var datalist = function datalist(table, pageNumber) {
 /* 31 */,
 /* 32 */,
 /* 33 */
+/*!*******************************************************!*\
+  !*** F:/shunshun/alitraver2/alitraver/common/list.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.addressData = void 0; // 定位
+// 引入SDK核心类
+var QQMapWX = __webpack_require__(/*! ../common/qqmap-wx-jssdk.js */ 34);
+var qqmapsdk;
+
+var addressData = function addressData() {
+  return new Promise(function (resolve, reject) {
+    qqmapsdk = new QQMapWX({
+      key: 'Q32BZ-3PBKW-SLGRP-RLUEO-I4OZF-XWBEG' });
+
+    qqmapsdk.reverseGeocoder({
+      success: function success(res) {
+        resolve(res);
+      },
+      fail: function fail(err) {
+        reject(err);
+      } });
+
+  });
+};exports.addressData = addressData;
+
+/***/ }),
+/* 34 */
 /*!*****************************************************************!*\
   !*** F:/shunshun/alitraver2/alitraver/common/qqmap-wx-jssdk.js ***!
   \*****************************************************************/

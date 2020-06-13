@@ -13,10 +13,8 @@
 	import addressA from './components/address.vue'
 	import locality from './components/locality.vue'
 	import contentA from './components/content.vue'
-	// 引入SDK核心类
-	var QQMapWX = require('../../common/qqmap-wx-jssdk.js');
-	var qqmapsdk;
-	
+	import {addressData} from '../../common/list.js'
+	import {mapState} from 'vuex'
 	export default{
 		components:{
 			addressA,
@@ -30,24 +28,28 @@
 		},
 		methods:{
 			addRess(){
-				// 实例化API核心类
-				qqmapsdk = new QQMapWX({
-					key: 'Q32BZ-3PBKW-SLGRP-RLUEO-I4OZF-XWBEG'
-				});
-				qqmapsdk.reverseGeocoder({
-					success:(res)=>{
-						console.log(res)
-						this.address = res.result.ad_info.city
-					},
-					fail:(err)=>{
-						console.log(err)
-						this.address = '广州市'
-					}
+				addressData()
+				.then((res)=>{
+					console.log(res)
+					this.address = res.result.ad_info.city
+					this.$store.commit('citymuta', this.address)
+					/* console.log(this.address) */
+					// 定位成功查询数据库取出该城市下的景点数据
+				}).catch((err)=>{
+					console.log('用户拒绝定位')
+					this.address = '广州市'
+					this.$store.commit('citymuta', this.address)
 				})
 			}
 		},
 		created(){
 			this.addRess()
+		},
+		computed:{
+			...mapState(['cityData']),
+			count(){
+				this.address = this.cityData.city
+			}
 		}
 	}
 </script>
