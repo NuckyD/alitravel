@@ -5,7 +5,7 @@
 			<view class="search-cont">
 				<view class="city-search">
 					<image src="../../static/tab/sousuo.svg" mode="widthFix" class="search-img"></image>
-					<input type="text" placeholder="发现你感兴趣的目的地" @focus="searchCity"/>
+					<input type="text" placeholder="发现你感兴趣的目的地" @focus="searchCity" @input="searchInput" v-model="keywoeds"/>
 				</view>
 				<view class="search-code" v-if="!citynone">
 					<image src="../../static/tab/chaa.svg" mode="widthFix" @click="canCel"></image>
@@ -14,51 +14,46 @@
 		</view>
 		
 		<!-- 点击搜索隐藏 -->
-				<view v-if="citynone">
-					<!-- 定位城市 -->
-					<view class="city-view">
-						<view class="city-text">当前定位城市</view>
-						<view class="posit-city">
-							<image src="../../static/tab/gonglveb.png" mode="widthFix"></image>
-							<text class="city-text" @click="clickCity()">{{address}}</text>
-						</view>
-					</view>
-					
-					<!-- 热门城市 -->
-					<view class="hot-city">热门城市</view>
-					<view class="menu-block">
-						<block v-for="(item,index) in city" :key="index">
-							<view @click="hotCity(item.name)">{{item.name}}</view>
-						</block>
-					</view>
+		<view v-if="citynone">
+			<!-- 定位城市 -->
+			<view class="city-view">
+				<view class="city-text">当前定位城市</view>
+				<view class="posit-city">
+					<image src="../../static/tab/gonglveb.png" mode="widthFix"></image>
+					<text class="city-text" @click="clickCity()">{{address}}</text>
 				</view>
+			</view>
+			
+			<!-- 热门城市 -->
+			<view class="hot-city">热门城市</view>
+			<view class="menu-block">
+				<block v-for="(item,index) in city" :key="index">
+					<view @click="hotCity(item.name)">{{item.name}}</view>
+				</block>
+			</view>
+		</view>
 		<!-- 显示搜索的城市 -->
-				<view class="results" v-if="!citynone">
-					<block v-for="(item,index) in citydata" :key='index'>
-						<view class="results-city" @click="seekCity(item)">
-						<image src="../../static/tab/gonglveb.png" mode="widthFix"></image>
-						<text>{{item}}</text>	
-						</view>	
-					</block>
+		<view class="results" v-if="!citynone">
+			<block v-for="(item,index) in citydata" :key='index'>
+				<view class="results-city" @click="seekCity(item)">
+					<image src="../../static/tab/gonglveb.png" mode="widthFix"></image>
+					<text>{{item}}</text>	
 				</view>	
-		
+			</block>
+		</view>	
 	</view>
 </template>
 
 <script>
 	// 引入定位
-import {addressData} from '../../common/list.js'
+import {addressData, seekCityData} from '../../common/list.js'
 export default {
 	name: 'citying',
 	data() {
 		return {
 			citynone:true,
 			address:'',
-			citydata:[
-				'昆明市',
-				'大理白族自治州',
-				'北京市'
-			], //搜索的城市
+			citydata:[], //搜索的城市
 			keywoeds:'',
 			pageroute:'',  //从哪个页面进来的路由
 			city: [
@@ -93,7 +88,9 @@ export default {
 			this.citynone = false
 		},
 		canCel(){
-			this.citynone = true
+			this.citynone = true,
+			this.keywoeds = '',
+			this.citydata = []
 		},
 		addRess(){
 			addressData()
@@ -119,9 +116,20 @@ export default {
 		
 		// 搜索城市
 		seekCity(city){
-			console.log(city)
+			//console.log(city)
 			this.rouTes(city)
 		},
+		
+		searchInput(e){
+			seekCityData(e.detail.value)
+			.then((res) => {
+				console.log(res)
+				this.citydata = res
+			}).catch((err) => {
+				console.log(err)
+			})
+		},
+		
 		rouTes(city){
 			this.$store.commit("citymuta", city)
 			uni.navigateBack({
