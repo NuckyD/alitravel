@@ -19,7 +19,7 @@ var addressData = function(){
 }
 
 var seekCityData = function(input){
-	return new Promise((resolve,reject) => {
+	return new Promise((resolve, reject) => {
 		qqmapsdk.getSuggestion({
 			keyword: input,
 			success:(res) => {
@@ -34,4 +34,22 @@ var seekCityData = function(input){
 		})
 	})
 }
-export {addressData,seekCityData}	
+
+var preview = function(index,urls){
+	return new Promise((resolve, reject) => {
+		uni.previewImage({
+			current:index,
+			urls: urls,
+			longPressActions: {
+				itemList: ['发送给朋友', '保存图片', '收藏'],
+			}
+		})
+		.then((res)=>{
+			resolve(res)
+		})
+		.catch((err)=>{
+			reject(err)
+		})
+	})
+}
+export {addressData, seekCityData, preview}	
