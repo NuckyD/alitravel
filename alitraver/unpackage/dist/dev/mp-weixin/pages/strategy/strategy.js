@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -146,7 +146,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 var _list = __webpack_require__(/*! ../../common/list.js */ 33);
-var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var addressA = function addressA() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/address */ "pages/strategy/components/address").then((function () {return resolve(__webpack_require__(/*! ./components/address.vue */ 114));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var locality = function locality() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/locality */ "pages/strategy/components/locality").then((function () {return resolve(__webpack_require__(/*! ./components/locality.vue */ 121));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var contentA = function contentA() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/content */ "pages/strategy/components/content").then((function () {return resolve(__webpack_require__(/*! ./components/content.vue */ 128));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var addressA = function addressA() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/address */ "pages/strategy/components/address").then((function () {return resolve(__webpack_require__(/*! ./components/address.vue */ 125));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var locality = function locality() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/locality */ "pages/strategy/components/locality").then((function () {return resolve(__webpack_require__(/*! ./components/locality.vue */ 132));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var contentA = function contentA() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/content */ "pages/strategy/components/content").then((function () {return resolve(__webpack_require__(/*! ./components/content.vue */ 139));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   components: {
     addressA: addressA,
@@ -172,6 +172,11 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumera
         _this.address = '广州市';
         _this.$store.commit('citymuta', _this.address);
       });
+    },
+    addTravels: function addTravels() {
+      uni.navigateTo({
+        url: '../travels/travels' });
+
     } },
 
   created: function created() {
@@ -182,6 +187,7 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumera
     count: function count() {
       this.address = this.cityData.city;
     } }) };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

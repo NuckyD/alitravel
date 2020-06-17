@@ -82,7 +82,7 @@
 
 <script>
 	// 引入预览图片
-	import {preview,addressdata} from '../../common/list.js'
+	import {preview,addressData} from '../../common/list.js'
 	import {mapState} from 'vuex'
 	/* // 引入即可反馈组件
 	import HMmessages from "@/components/HM-messages/HM-messages.vue"
@@ -198,7 +198,7 @@
 			
 			// 定位
 			addRess(){
-				addressdata()
+				addressData()
 				.then((res)=>{
 					console.log(res)
 					let city = res.result.ad_info.city
@@ -400,9 +400,9 @@
 		},
 		// 计算属性
 		computed:{
-			...mapState(['travecity']),
+			...mapState(['travelcityData']),
 			count(){
-				/* this.watchaddress = this.travecity.traveing */
+				 this.watchaddress = this.travelcityData.city 
 			}
 		},
 		watch:{

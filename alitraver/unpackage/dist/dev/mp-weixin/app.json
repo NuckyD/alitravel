@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/travels/travels",
     "pages/index/index",
     "pages/strategy/strategy",
     "pages/my/my",
-    "pages/city/city"
-   
+    "pages/city/city",
+    "pages/travels/travels"
+    
   ],
   "subPackages": [],
   "window": {

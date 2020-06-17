@@ -263,7 +263,15 @@ var _default = { name: 'citying', data: function data() {return { citynone: true
     },
 
     rouTes: function rouTes(city) {
-      this.$store.commit("citymuta", city);
+      if (this.pageroute == 'pages/travels/travels') {
+        console.log(city);
+        // 传给发表页面的
+        this.$store.commit('travelmuta', city);
+      } else {
+        // 传给tabr攻略页面的
+        console.log(city);
+        this.$store.commit('citymuta', city);
+      }
       uni.navigateBack({
         delta: 1 });
 
@@ -271,6 +279,13 @@ var _default = { name: 'citying', data: function data() {return { citynone: true
 
   mounted: function mounted() {
     this.addRess();
+  },
+  // 判断路由
+  onLoad: function onLoad() {
+    var pages = getCurrentPages();
+    var prevpage = pages[pages.length - 2];
+    console.log(prevpage.route);
+    this.pageroute = prevpage.route;
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

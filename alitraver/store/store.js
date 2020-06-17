@@ -26,12 +26,17 @@ const cityData = {
 	city: ''
 }
 
+const travelcityData = {
+	city: ''
+}
+
 // 数据仓库
 const state = {
 	list,
 	loading,
 	navdata,
-	cityData
+	cityData,
+	travelcityData
 }
 
 export default new Vuex.Store({
@@ -64,6 +69,11 @@ export default new Vuex.Store({
 		},
 		citymuta(state, city){
 			state.cityData = {
+				city: city
+			}
+		},
+		travelmuta(state, city){
+			state.travelcityData = {
 				city: city
 			}
 		}

@@ -131,7 +131,15 @@ export default {
 		},
 		
 		rouTes(city){
-			this.$store.commit("citymuta", city)
+			if(this.pageroute == 'pages/travels/travels'){
+				console.log(city)
+				// 传给发表页面的
+				this.$store.commit('travelmuta',city)
+			}else{
+				// 传给tabr攻略页面的
+				console.log(city)
+				this.$store.commit('citymuta',city)
+			}
 			uni.navigateBack({
 				delta:1
 			})
@@ -139,6 +147,13 @@ export default {
 	},
 	mounted() {
 		this.addRess()
+	},
+	// 判断路由
+	onLoad() {
+		let pages = getCurrentPages()
+		let prevpage = pages[pages.length - 2]; 
+		console.log(prevpage.route)
+		this.pageroute = prevpage.route
 	}
 }
 </script>

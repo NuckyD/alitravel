@@ -4,7 +4,7 @@
 		<locality></locality>
 		<contentA></contentA>
 		<view class="publish animated fadeInUp">
-			<image src="../../static/tab/fab.png" mode="widthFix"></image>
+			<image src="../../static/tab/fab.png" mode="widthFix" @click="addTravels"></image>
 		</view>
 	</view>
 </template>
@@ -39,6 +39,11 @@
 					console.log('用户拒绝定位')
 					this.address = '广州市'
 					this.$store.commit('citymuta', this.address)
+				})
+			},
+			addTravels(){
+				uni.navigateTo({
+					url: '../travels/travels'
 				})
 			}
 		},
