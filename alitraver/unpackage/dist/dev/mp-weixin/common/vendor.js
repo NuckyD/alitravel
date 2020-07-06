@@ -8532,7 +8532,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞猪旅游" }, "pages/strategy/strategy": { "navigationBarTitleText": "攻略" }, "pages/my/my": { "navigationBarTitleText": "我的" }, "pages/city/city": { "navigationBarTitleText": "选择城市" }, "pages/travels/travels": { "navigationBarTitleText": "旅游日记" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "飞猪旅游", "navigationBarBackgroundColor": "#ffd300", "backgroundColor": "#ffd300" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞猪旅游" }, "pages/strategy/strategy": { "navigationBarTitleText": "攻略" }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/travels/travels": { "navigationBarTitleText": "旅游日记" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "飞猪旅游", "navigationBarBackgroundColor": "#ffd300", "backgroundColor": "#ffd300" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -9790,7 +9790,7 @@ var datalist = function datalist(table, pageNumber) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.preview = exports.seekCityData = exports.addressData = void 0; // 定位
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.login = exports.preview = exports.seekCityData = exports.addressData = void 0; // 定位
 // 引入SDK核心类
 var QQMapWX = __webpack_require__(/*! ../common/qqmap-wx-jssdk.js */ 34);
 var qqmapsdk = new QQMapWX({
@@ -9844,6 +9844,23 @@ var preview = function preview(index, urls) {
     });
   });
 };exports.preview = preview;
+
+var login = function login(user) {
+  return new Promise(function (resolve, reject) {
+    var db = wx.cloud.database();
+    var users = db.collection('user');
+    console.log(user);
+    users.add({
+      data: user }).
+
+    then(function (res) {
+      resolve(res);
+    }).
+    catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.login = login;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

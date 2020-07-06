@@ -84,19 +84,20 @@
 	// 引入预览图片
 	import {preview,addressData} from '../../common/list.js'
 	import {mapState} from 'vuex'
-	/* // 引入即可反馈组件
-	import HMmessages from "@/components/HM-messages/HM-messages.vue"
+	 // 引入即可反馈组件
+	import HMmessages from "../../common/components/HM-messages/HM-messages.vue"
+	
 	// 引入模态框
-	import motal from '../../element/modal.vue'
+	import motal from '../../element/motal.vue'
 	// 引入当前时间的js
-	var util = require('../../common/util.js');
+	/*var util = require('../../common/util.js');
 	var time = util.formatTime(new Date()); */
 	// 定义数据库
 	var db = wx.cloud.database()
 	var users = db.collection('user')
 	export default{
 		name:'travels',
-		/* components: {HMmessages,motal}, */
+		components: {HMmessages, motal},
 		data() {
 			return {
 				num:0,
@@ -252,7 +253,7 @@
 					if(res.data.length == 0){
 						console.log('没有登录')
 						// 弹出模态框
-						let message = '请登录后再操作'
+						let message = '请登录后再发布'
 						this.$nextTick(()=>{   //dom更新循环结束之后的延迟回调
 							this.$refs.mon.init(message)
 						})

@@ -5,7 +5,6 @@
     "pages/my/my",
     "pages/city/city",
     "pages/travels/travels"
-    
   ],
   "subPackages": [],
   "window": {
@@ -44,5 +43,6 @@
     "load-list": "/element/loading",
     "none-data": "/element/none",
     "home-load": "/element/homeload"
-  }
+  },
+  "sitemapLocation": "sitemap96.json"
 }

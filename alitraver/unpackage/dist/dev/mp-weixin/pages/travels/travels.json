@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "旅游日记",
-  "usingComponents": {}
+  "usingComponents": {
+    "h-mmessages": "/common/components/HM-messages/HM-messages",
+    "motal": "/element/motal"
+  }
 }
