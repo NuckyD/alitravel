@@ -8532,7 +8532,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞猪旅游" }, "pages/strategy/strategy": { "navigationBarTitleText": "攻略" }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/travels/travels": { "navigationBarTitleText": "旅游日记" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "飞猪旅游", "navigationBarBackgroundColor": "#ffd300", "backgroundColor": "#ffd300" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞猪旅游" }, "pages/strategy/strategy": { "navigationBarTitleText": "攻略" }, "pages/my/my": { "navigationBarTitleText": "我的" }, "pages/city/city": { "navigationBarTitleText": "选择城市" }, "pages/travels/travels": { "navigationBarTitleText": "旅游日记" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "飞猪旅游", "navigationBarBackgroundColor": "#ffd300", "backgroundColor": "#ffd300" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -11804,6 +11804,33 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
+
+/***/ }),
+/* 60 */
+/*!*******************************************************!*\
+  !*** F:/shunshun/alitraver2/alitraver/common/util.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var formatTime = function formatTime(date) {
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+};
+
+var formatNumber = function formatNumber(n) {
+  n = n.toString();
+  return n[1] ? n : '0' + n;
+};
+
+module.exports = {
+  formatTime: formatTime };
 
 /***/ })
 ]]);

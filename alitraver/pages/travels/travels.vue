@@ -90,8 +90,8 @@
 	// 引入模态框
 	import motal from '../../element/motal.vue'
 	// 引入当前时间的js
-	/*var util = require('../../common/util.js');
-	var time = util.formatTime(new Date()); */
+	var util = require('../../common/util.js');
+	var time = util.formatTime(new Date());
 	// 定义数据库
 	var db = wx.cloud.database()
 	var users = db.collection('user')
@@ -325,7 +325,7 @@
 				return new Promise((resolve,reject)=>{
 					// 用户是否要上传视频
 					if(this.videos == ''){
-						console.log('用户不上传')
+						console.log('用户不上传视频')
 						resolve('')
 					}else{
 						console.log('要上传')
@@ -378,7 +378,7 @@
 						uni.switchTab({ 
 							url:'../strategy/strategy'
 						})
-						this.$store.commit('roturnmuta',pagesid)
+						/* this.$store.commit('roturnmuta',pagesid) */
 					},1700)
 					
 				})

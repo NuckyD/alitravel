@@ -145,8 +145,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 var _list = __webpack_require__(/*! ../../common/list.js */ 33);
-var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var addressA = function addressA() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/address */ "pages/strategy/components/address").then((function () {return resolve(__webpack_require__(/*! ./components/address.vue */ 125));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var locality = function locality() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/locality */ "pages/strategy/components/locality").then((function () {return resolve(__webpack_require__(/*! ./components/locality.vue */ 132));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var contentA = function contentA() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/content */ "pages/strategy/components/content").then((function () {return resolve(__webpack_require__(/*! ./components/content.vue */ 139));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var addressA = function addressA() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/address */ "pages/strategy/components/address").then((function () {return resolve(__webpack_require__(/*! ./components/address.vue */ 126));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var locality = function locality() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/locality */ "pages/strategy/components/locality").then((function () {return resolve(__webpack_require__(/*! ./components/locality.vue */ 133));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var contentA = function contentA() {__webpack_require__.e(/*! require.ensure | pages/strategy/components/content */ "pages/strategy/components/content").then((function () {return resolve(__webpack_require__(/*! ./components/content.vue */ 140));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+var db = wx.cloud.database();
+var userdata = db.collection('userdata');var _default =
+
 {
   components: {
     addressA: addressA,
@@ -155,7 +163,13 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumera
 
   data: function data() {
     return {
-      address: '' };
+      address: '',
+      addressData: '',
+      // 列表数据
+      localdata: [],
+      loadinglist: false,
+      nonedata: false,
+      homeload: true };
 
   },
   methods: {
@@ -167,7 +181,9 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumera
         _this.$store.commit('citymuta', _this.address);
         /* console.log(this.address) */
         // 定位成功查询数据库取出该城市下的景点数据
+        _this.dataByCity(_this.address);
       }).catch(function (err) {
+        console.log(err);
         console.log('用户拒绝定位');
         _this.address = '广州市';
         _this.$store.commit('citymuta', _this.address);
@@ -177,6 +193,76 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumera
       uni.navigateTo({
         url: '../travels/travels' });
 
+    },
+    fatherMethod: function fatherMethod(name) {
+      console.log(name);
+      this.loadinglist = true;
+      this.nonedata = false;
+      if ('全部' == name) {
+        this.dataByCity(this.address);
+      } else {
+        this.tabCity(this.address, name);
+      }
+    },
+    dataByCity: function dataByCity(city) {var _this2 = this;
+      userdata.where({
+        datainfo: {
+          address: city } }).
+
+
+      orderBy('datainfo.time', 'desc').
+      get().
+      then(function (res) {
+        console.log(res);
+        var citydata = res.data;
+        // 筛选值 _id，datainfo里的数据，合并成一个数组返回来
+        _this2.resultCity(citydata);
+      }).
+      catch(function (err) {
+        console.log(err);
+      });
+    },
+    // tab切换筛选的数据
+    tabCity: function tabCity(city, name) {var _this3 = this;
+      userdata.where({
+        datainfo: {
+          address: city,
+          classdata: name } }).
+
+
+      get().
+      then(function (res) {
+        console.log(res);
+        var citydata = res.data;
+        _this3.resultCity(citydata);
+      }).
+      catch(function (err) {
+        console.log(err);
+      });
+    },
+    // 筛选值 _id，datainfo里的数据，合并成一个数组返回来
+    resultCity: function resultCity(citydata) {var _this4 = this;
+      var adddata = citydata.map(function (item) {
+        var id = item._id;
+        var datainfo = item.datainfo;
+        return {
+          id: id,
+          datainfo: datainfo };
+
+        _this4.loadinglist = flase;
+      });
+      console.log(adddata);
+      this.localdata = adddata;
+      // 数据出来loading消失
+      this.homeload = false;
+      // 数据出来 tab loading消失
+      this.loadinglist = false;
+      // 没有数据给予提示
+      if (adddata.length === 0) {
+        this.nonedata = true;
+      } else {
+        this.nonedata = false;
+      }
     } },
 
   created: function created() {
@@ -185,8 +271,16 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumera
   computed: _objectSpread({},
   (0, _vuex.mapState)(['cityData']), {
     count: function count() {
-      this.address = this.cityData.city;
-    } }) };exports.default = _default;
+      this.addressData = this.cityData.city;
+    } }),
+
+  // 侦听器
+  watch: {
+    addressData: function addressData(newValue, oldValue) {
+      console.log(newValue);
+      this.address = newValue;
+      this.dataByCity(newValue);
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

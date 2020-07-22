@@ -2,18 +2,20 @@
 	<view class="active">
 		<view class="conteng">
 			<block v-for="(item,index) in localdata" :key="index">
-				<view class="content-article">
+				<view class="content-article" @click="localCont(item.id)">
 					<view class="content-img">
-						<image src ="https://img.alicdn.com/bao/uploaded/i3/2200538386031/O1CN01UzXSiL1uQFCqHg9r1_!!2200538386031.jpg_400x400.jpg" mode="aspectFill" class=""></image>
+						<block v-for="(itemimg,index) in item.datainfo.staticimg" :key="index" v-if="index == 0">
+							<image :src = "itemimg" mode="aspectFill" class=""></image>
+						</block>
 					</view>
 					<view class="active-introduce">
-						<view class="active-title">清晖园</view>
-						<view class="active-list">好玩我我我哇</view>
-						<view class="active-label">好好玩</view>
+						<view class="active-title">{{item.datainfo.titledata}}</view>
+						<view class="active-list">{{item.datainfo.tipsdata}}</view>
+						<!-- <view class="active-label">好好玩</view> -->
 					</view>
 					<view class="purchase userinfo">
-						<image src="https://img.alicdn.com/bao/uploaded/i3/2200538386031/O1CN01UzXSiL1uQFCqHg9r1_!!2200538386031.jpg_400x400.jpg" mode="widthFix"></image>
-						<text class="active-purchase">马化腾</text>
+						<image :src="item.datainfo.avatarUrl" mode="widthFix"></image>
+						<text class="active-purchase">{{item.datainfo.nickName}}</text>
 					</view>
 				</view>
 			</block>
@@ -25,15 +27,10 @@
 export default {
 	name: 'cont',
 	props: {
-		
+		localdata:Array
 	},
 	data() {
 		return {
-			localdata:[
-				{
-					
-				}
-			]
 		};
 	},
 	methods: {
