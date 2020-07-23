@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "详情",
+  "usingComponents": {
+    "navs": "/pages/detail/components/navs",
+    "banner": "/pages/detail/components/banner",
+    "matter": "/pages/detail/components/matter",
+    "message": "/pages/detail/components/message"
+  }
+}

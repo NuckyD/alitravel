@@ -1,0 +1,23 @@
+
+.navs.data-v-dc2bd706{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	height: 50rpx;
+	line-height: 50rpx;
+	padding: 5rpx 0;
+}
+.navs text.data-v-dc2bd706{
+	display: block;
+	font-size: 30rpx;
+	width: 100rpx;
+	text-align: center;
+	color:
+}
+.activetext.data-v-dc2bd706{
+	border-bottom: 6rpx solid #3d3b32;
+}
+

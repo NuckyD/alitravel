@@ -137,9 +137,15 @@
 			this.addRess()
 		},
 		computed:{
-			...mapState(['cityData']),
+			...mapState(['cityData','updateFresh']),
 			count(){
 				this.addressData = this.cityData.city
+			},
+			routing(){
+				if(this.updateFresh.pagesid == true){
+					console.log('再次刷新当前页面')
+					this.addRess()
+				}
 			}
 		},
 		// 侦听器

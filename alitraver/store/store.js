@@ -30,13 +30,18 @@ const travelcityData = {
 	city: ''
 }
 
+const updateFresh = {
+	pagesid: true
+}
+
 // 数据仓库
 const state = {
 	list,
 	loading,
 	navdata,
 	cityData,
-	travelcityData
+	travelcityData,
+	updateFresh
 }
 
 export default new Vuex.Store({
@@ -75,6 +80,11 @@ export default new Vuex.Store({
 		travelmuta(state, city){
 			state.travelcityData = {
 				city: city
+			}
+		},
+		roturnmuta(state, pagesid){
+			state.updateFresh = {
+				pagesid: pagesid
 			}
 		}
 	}

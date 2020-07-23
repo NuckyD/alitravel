@@ -1,0 +1,1 @@
+<view><view hidden="{{!(navShow)}}" class="scroll-flex" style="{{'opacity:'+(opacity)+';'}}"><navs vue-id="3db16520-1" bind:__l="__l"></navs></view><banner vue-id="3db16520-2" detaildata="{{detaildata}}" bind:__l="__l"></banner><matter vue-id="3db16520-3" bind:__l="__l"></matter><message vue-id="3db16520-4" bind:__l="__l"></message><view style="height:2500rpx;"></view></view>

@@ -29,6 +29,12 @@
 			"style": {
 				"navigationBarTitleText": "旅游日记"
 			}
+		},
+		{
+			"path": "pages/detail/detail",
+			"style": {
+				"navigationBarTitleText": "详情"
+			}
 		}
 	],
 	"globalStyle": {

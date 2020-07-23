@@ -37,7 +37,7 @@ export default {
 		localCont(id) {
 			console.log(id);
 			uni.navigateTo({
-				url: '../details/detalis?id=' + id
+				url: '../detail/detail?id=' + id
 			});
 		}
 	}

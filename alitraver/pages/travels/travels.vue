@@ -219,13 +219,6 @@
 			
 			// 提交
 			suBmitd(){
-				// console.log('11222')
-				// console.log(this.classdata)
-				// console.log(this.titledata)
-				// console.log(this.tipsdata)
-				// console.log(this.topimg)
-				// console.log(this.videos)
-				// console.log(this.address)
 				if(this.titledata == ''){
 					let tip = '标题必填'
 					this.proMpt(tip)
@@ -378,7 +371,7 @@
 						uni.switchTab({ 
 							url:'../strategy/strategy'
 						})
-						/* this.$store.commit('roturnmuta',pagesid) */
+						this.$store.commit('roturnmuta',pagesid)
 					},1700)
 					
 				})
