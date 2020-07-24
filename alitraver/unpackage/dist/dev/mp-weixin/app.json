@@ -1,14 +1,12 @@
 {
   "pages": [
     "pages/detail/detail",
-    "pages/strategy/strategy",
-    "pages/travels/travels",
-   
     "pages/index/index",
-    
+    "pages/strategy/strategy",
     "pages/my/my",
-    "pages/city/city"
-    
+    "pages/city/city",
+    "pages/travels/travels"
+
   ],
   "subPackages": [],
   "window": {
@@ -48,5 +46,5 @@
     "none-data": "/element/none",
     "home-load": "/element/homeload"
   },
-  "sitemapLocation": "sitemap75.json"
+  "sitemapLocation": "sitemap14.json"
 }

@@ -9,7 +9,7 @@
 					<block v-for="(item,index) in imgArray" :key="index">
 						<swiper-item>
 							<view class="swiper-item">
-								<image :src="item" mode="aspectFill" class="imageurl" @click="previmg(index)"></image>
+								<image :src="item" mode="aspectFill" class="imageurl" @click="preimg(index)"></image>
 							</view>
 						</swiper-item>
 					</block>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+	import {preview} from '../../../common/list.js'
 	export default{
 		name:'banner',
 		props:{
@@ -51,6 +52,15 @@
 			swiperImg(e){
 				console.log(e)
 				this.bannerindex = e.detail.current
+			},
+			
+			preimg(index){
+				preview(index, this.imgArray)
+				.then((res) => {
+					console.log('预览成功！')
+				}).catch((err) => {
+					console.log('预览失败！')
+				})
 			}
 		},
 		watch:{

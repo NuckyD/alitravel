@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 图文视频 */
+.cont-back.data-v-e3d8e464{padding: 20rpx; background: #FFFFFF;}
+.cont-introduce.data-v-e3d8e464{margin-top: 20rpx;}
+.img-video.data-v-e3d8e464{color: #333333; font-size: 30rpx; font-weight: bold; padding: 20rpx 0;}
+.cont-introduce video.data-v-e3d8e464,image.data-v-e3d8e464{width: 100%;}
+.cont-introduce video.data-v-e3d8e464{margin-bottom: 20rpx;}
+

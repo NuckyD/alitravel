@@ -4,7 +4,7 @@
 			<Navs></Navs>
 		</view>
 		<Banner :detaildata="detaildata"></Banner>
-		<Matter></Matter>
+		<Matter :detaildata="detaildata"></Matter>
 		<Message></Message>
 		<view style="height: 2500upx;"></view>
 	</view>
@@ -70,6 +70,9 @@
 </script>
 
 <style>
+	page{
+		background-color: #f8f8f8;
+	}
 	.scroll-flex{
 		position: fixed;
 		top: 0;

@@ -104,7 +104,7 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"element/homeload":1,"element/loading":1,"element/none":1,"common/components/uni-load-more/uni-load-more":1,"pages/index/components/article":1,"pages/index/components/classify":1,"pages/index/components/content":1,"pages/index/components/search":1,"pages/index/components/ticket":1,"pages/strategy/components/address":1,"pages/strategy/components/content":1,"pages/strategy/components/locality":1,"common/components/HM-messages/HM-messages":1,"element/motal":1,"pages/detail/components/banner":1,"pages/detail/components/navs":1};
+/******/ 		var cssChunks = {"element/homeload":1,"element/loading":1,"element/none":1,"common/components/uni-load-more/uni-load-more":1,"pages/index/components/article":1,"pages/index/components/classify":1,"pages/index/components/content":1,"pages/index/components/search":1,"pages/index/components/ticket":1,"pages/strategy/components/address":1,"pages/strategy/components/content":1,"pages/strategy/components/locality":1,"common/components/HM-messages/HM-messages":1,"element/motal":1,"pages/detail/components/banner":1,"pages/detail/components/matter":1,"pages/detail/components/message":1,"pages/detail/components/navs":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
