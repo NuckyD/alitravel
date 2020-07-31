@@ -2,7 +2,7 @@
 	<view>
 		<view class="navs">
 			<block v-for="(item,index) in navalue" :key='index'>
-				<text :class="{activetext:index == num}">{{item.name}}</text>
+				<text :class="{activetext:index == num}" @click="navbtn(index)">{{item.name}}</text>
 			</block>
 		</view>
 	</view>
@@ -13,6 +13,7 @@
 		name:'navs',
 		data(){
 			return{
+				num: 0,
 				navalue: [
 					{
 						'name':"宝贝"
@@ -24,6 +25,21 @@
 						'name':"评价"
 					}
 				]
+			}
+		},
+		methods:{
+			navbtn(index){
+				this.num = index
+				if(index === 0){
+					this.backTop()
+				} else {
+					this.$parent.fatherTab(index)
+				}
+			},
+			backTop(){
+				wx.pageScrollTo({
+					scrollTop:0
+				})
 			}
 		}
 	}

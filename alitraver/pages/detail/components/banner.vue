@@ -27,7 +27,7 @@
 			<!-- 销量之类 -->
 			<view class="volume">
 				<text>5分 超出预期</text>
-				<text>评论0条</text>
+				<text>评论{{ leaveword.length }}条</text>
 				<text>月销100笔</text>
 			</view>
 		</view>
@@ -39,13 +39,15 @@
 	export default{
 		name:'banner',
 		props:{
-			detaildata:Object
+			detaildata:Object,
+			leaveword:Array
 		},
 		data(){
 			return{
 				imgArray:[],
 				bannerindex: 0,
 				num: 1,
+				
 			}
 		},
 		methods:{

@@ -130,7 +130,19 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Navs = function Navs() {__webpack_require__.e(/*! require.ensure | pages/detail/components/navs */ "pages/detail/components/navs").then((function () {return resolve(__webpack_require__(/*! ./components/navs.vue */ 169));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Banner = function Banner() {Promise.all(/*! require.ensure | pages/detail/components/banner */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/detail/components/banner")]).then((function () {return resolve(__webpack_require__(/*! ./components/banner.vue */ 176));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Matter = function Matter() {__webpack_require__.e(/*! require.ensure | pages/detail/components/matter */ "pages/detail/components/matter").then((function () {return resolve(__webpack_require__(/*! ./components/matter.vue */ 183));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Message = function Message() {__webpack_require__.e(/*! require.ensure | pages/detail/components/message */ "pages/detail/components/message").then((function () {return resolve(__webpack_require__(/*! ./components/message.vue */ 188));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Navs = function Navs() {__webpack_require__.e(/*! require.ensure | pages/detail/components/navs */ "pages/detail/components/navs").then((function () {return resolve(__webpack_require__(/*! ./components/navs.vue */ 169));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Banner = function Banner() {Promise.all(/*! require.ensure | pages/detail/components/banner */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/detail/components/banner")]).then((function () {return resolve(__webpack_require__(/*! ./components/banner.vue */ 176));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Matter = function Matter() {__webpack_require__.e(/*! require.ensure | pages/detail/components/matter */ "pages/detail/components/matter").then((function () {return resolve(__webpack_require__(/*! ./components/matter.vue */ 183));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Message = function Message() {Promise.all(/*! require.ensure | pages/detail/components/message */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/detail/components/message")]).then((function () {return resolve(__webpack_require__(/*! ./components/message.vue */ 190));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -148,8 +160,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 var db = wx.cloud.database();
-var userdata = db.collection('userdata');var _default =
-
+var userdata = db.collection('userdata');
+var messages = db.collection('message');var _default =
 {
   name: 'detail',
   components: {
@@ -163,10 +175,15 @@ var userdata = db.collection('userdata');var _default =
       navShow: false,
       opacity: 0,
       dataId: '0',
-      detaildata: Object };
+      detaildata: Object,
+      messageWord: [],
+      leaveword: [],
+      nonedata: false,
+      homeload: true };
 
   },
   methods: {
+    //顶部导航栏
     handleScroll: function handleScroll(top) {
       if (top > 99) {
         this.opacity = top / 170;
@@ -176,23 +193,104 @@ var userdata = db.collection('userdata');var _default =
         this.navShow = false;
       }
     },
+    //根据id查询数据
     detailrep: function detailrep(id) {var _this = this;
       userdata.where({
         _id: id }).
       get().
       then(function (res) {
-        console.log(res);
         _this.detaildata = res.data[0].datainfo;
       }).catch(function (err) {
         console.log(err);
       });
+    },
+    //请求全部留言数据
+    messageData: function messageData(id) {var _this2 = this;
+      messages.where({
+        id: id }).
+      orderBy('messageData.time', 'desc').
+      get().
+      then(function (res) {
+        var resdata = res.data;
+        //取出ai分类的标签
+        _this2.classdata(resdata);
+        //取出评价列表
+        _this2.publicMessage(resdata);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    messageDataByClass: function messageDataByClass(id, className) {var _this3 = this;
+      messages.where({
+        id: id,
+        classMessage: className }).
+      orderBy('messageData.time', 'desc').
+      get().
+      then(function (res) {
+        var resdata = res.data;
+        //取出评价列表
+        _this3.publicMessage(resdata);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    //取出ai分类的标签
+    classdata: function classdata(resdata) {
+      var messageWord = resdata.map(function (item) {
+        return item.classMessage;
+      });
+      messageWord = Array.from(new Set(messageWord.filter(function (item) {return item;})));
+      //数组去空
+      console.log(messageWord);
+      this.messageWord = messageWord;
+    },
+    //取出评价列表
+    publicMessage: function publicMessage(resdata) {
+      var leaveword = resdata.map(function (item) {
+        return item.messageData;
+      });
+      if (leaveword.length === 0) {
+        this.nonedata = true;
+      } else {
+        this.nonedata = false;
+        this.leaveword = leaveword;
+      }
+
+    },
+    fatherTab: function fatherTab(index) {
+      var query = wx.createSelectorQuery();
+      if (index === 1) {
+        query.select('.matther-page').boundingClientRect();
+      } else if (index === 2) {
+        query.select('.message-page').boundingClientRect();
+      }
+      query.selectViewport().scrollOffset();
+      query.exec(function (res) {
+        wx.pageScrollTo({
+          scrollTop: res[0].top + res[1].scrollTop - 35 });
+
+      });
+    },
+    fatherMethod: function fatherMethod(className) {
+      console.log(className);
+      if (className == '全部') {
+        this.messageData(this.dataId);
+      } else {
+        this.messageDataByClass(this.dataId, className);
+      }
     } },
 
-  onLoad: function onLoad(e) {
+  onLoad: function onLoad(e) {var _this4 = this;
     console.log(e);
     this.dataId = e.id;
-    this.dataId = '3d23c0a05f194210006ace276c576adc';
-    this.detailrep(this.dataId);
+    //请求获取评价数据
+    Promise.all([this.detailrep(this.dataId), this.messageData(this.dataId)]).
+    then(function (res) {
+      _this4.homeload = false;
+    }).catch(function (err) {
+      console.log(err);
+    });
+
   },
   onPageScroll: function onPageScroll(e) {
     var top = e.scrollTop;

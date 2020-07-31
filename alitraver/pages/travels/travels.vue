@@ -72,8 +72,6 @@
 			<text>{{reldata}}</text>
 		</view>
 	</view>
-	
-	
 </view>
 	
 	
@@ -127,8 +125,6 @@
 				// 提示用户正在发布
 				reldata:'正在发布...请勿关闭该页面',
 				relend:false
-				
-				
 			}
 		},
 		methods:{

@@ -129,6 +129,7 @@ var _default =
   name: 'navs',
   data: function data() {
     return {
+      num: 0,
       navalue: [
       {
         'name': "宝贝" },
@@ -141,7 +142,21 @@ var _default =
 
 
 
-  } };exports.default = _default;
+  },
+  methods: {
+    navbtn: function navbtn(index) {
+      this.num = index;
+      if (index === 0) {
+        this.backTop();
+      } else {
+        this.$parent.fatherTab(index);
+      }
+    },
+    backTop: function backTop() {
+      wx.pageScrollTo({
+        scrollTop: 0 });
+
+    } } };exports.default = _default;
 
 /***/ }),
 

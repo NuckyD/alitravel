@@ -187,7 +187,7 @@ var _list = __webpack_require__(/*! ../../../common/list.js */ 33); //
 //
 //
 //
-var _default = { name: 'banner', props: { detaildata: Object }, data: function data() {return { imgArray: [], bannerindex: 0, num: 1 };}, methods: { swiperImg: function swiperImg(e) {console.log(e);this.bannerindex = e.detail.current;}, preimg: function preimg(index) {(0, _list.preview)(index, this.imgArray).then(function (res) {console.log('预览成功！');}).catch(function (err) {console.log('预览失败！');});} }, watch: { detaildata: function detaildata(newvalue, oldvalue) {this.imgArray = newvalue.staticimg.slice(0, 3);} } };exports.default = _default;
+var _default = { name: 'banner', props: { detaildata: Object, leaveword: Array }, data: function data() {return { imgArray: [], bannerindex: 0, num: 1 };}, methods: { swiperImg: function swiperImg(e) {console.log(e);this.bannerindex = e.detail.current;}, preimg: function preimg(index) {(0, _list.preview)(index, this.imgArray).then(function (res) {console.log('预览成功！');}).catch(function (err) {console.log('预览失败！');});} }, watch: { detaildata: function detaildata(newvalue, oldvalue) {this.imgArray = newvalue.staticimg.slice(0, 3);} } };exports.default = _default;
 
 /***/ }),
 

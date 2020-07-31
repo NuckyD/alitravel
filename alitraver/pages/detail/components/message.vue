@@ -5,7 +5,7 @@
 			<view class="img-video">宝贝评价({{ leaveword.length }})</view>
 			<!-- 分类 -->
 			<view class="menu-block">
-				<block v-for="(item, index) in newmessage" :key="index">
+				<block v-for="(item, index) in newMessageWord" :key="index">
 					<view :class="{ activetext: index == num }" @click="menubtn(index, item)">{{ item }}</view>
 				</block>
 			</view>
@@ -15,7 +15,7 @@
 					<view class="users-message">
 						<view class="cont-name">
 							<image :src="item.avatarUrl" mode="widthFix"></image>
-							<text>{{ item.nickName }}</text>
+							<text>{{ item.nickname }}</text>
 						</view>
 						<!-- 时间 -->
 						<view class="message-time">{{ item.time.substr(0, 10) }}</view>
@@ -36,7 +36,7 @@
 			<!-- 发表按钮 -->
 			<view class="published">
 				<view @click="messcancel()">取消</view>
-				<view @click="bTn()">发表</view>
+				<view @click="btn()">发表</view>
 			</view>
 		</view>
 		<!-- 登录模态框-->
@@ -47,46 +47,162 @@
 </template>
 
 <script>
-	export default{
-		name:'message',
-		data(){
-			return{
-				num:0,
-				box:false,
-				newmessage:[
-					'服务好',
-					'风景优美'
-				],
-				leaveword:[
-					{
-						"avatarUrl":'cloud://brx-jiwur.6272-brx-jiwur-1259748271/static/1595215191983-3780951.jpg',
-						'nickName':'马云',
-						'time':'2020-7-24',
-						'usermess':'年前和闺蜜去普吉度假，找了个行程比较自由轻松的团，普吉岛几乎可以不用英文，商场里都是国人!'
-					},
-					{
-						"avatarUrl":'cloud://brx-jiwur.6272-brx-jiwur-1259748271/static/1595215191983-3780951.jpg',
-						'nickName':'马化腾',
-						'time':'2020-7-24',
-						'usermess':'随时因为肺炎疫情没有去成，但是感觉服务比较专业，咨询了很多准备工作。最后全额退款啦!'
+import motal from '../../../element/motal.vue'; //引入登录模态框
+import HMmessages from '@/common/components/HM-messages/HM-messages.vue';
+
+var db = wx.cloud.database();
+var users = db.collection('user');
+var message = db.collection('message');
+// 引入当前时间的js
+var util = require('../../../common/util.js');
+var time = util.formatTime(new Date());
+
+export default {
+	name: 'message',
+	components: {
+		motal,
+		HMmessages
+	},
+	props:{
+		messageWord:Array,
+		leaveword:Array,
+		dataId:String
+	},
+	data() {
+		return {
+			num: 0,
+			box: false,
+			Comment:'',//评价信息
+			avatarUrl: '', //头像
+			nickname: '', //昵称
+			newMessageWord:[] ,//添加一个‘全部’分词
+			id:''
+		};
+	},
+	methods: {
+		menubtn(index, item) {
+			this.num = index;
+			this.$parent.fatherMethod(item)
+		},
+		//显示评论框
+		popup() {
+			users
+				.get()
+				.then(res => {
+					if (res.data.length == 0) {
+						let message = '请登录后再评价';
+						this.$nextTick(() => {
+							this.$refs.mon.init(message);
+						});
+					} else {
+						let userData = res.data[0];
+						this.avatarUrl = userData.avatarUrl;
+						this.nickname = userData.nickName;
+						this.box = true;
 					}
-				]
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		},
+		//提交评价
+		btn() {
+			if (this.Comment == "") {
+				let tip = '评论不能为空';
+				let icon = 'error';
+				this.tips(tip, icon);
+			}else {
+				//调用云函数
+				//1.先提交到百度做分析处理，返回数据 2.提交到数据库
+				this.submit()
 			}
 		},
-		methods:{
-			menubtn(index,item){
-				this.num = index
-			},
-			//显示评论框
-			popup(){
-				this.box = true
-			},
-			//隐藏评论框
-			messcancel(){
-				this.box = false
+		async submit(){
+			//调用云函数到百度云分析处理返回标签
+			let stamess = await this.aiMessage()
+			//console.log(stamess)
+			let classif = ''
+			if(stamess.length > 0){
+				let ali = stamess[stamess.length - 1]
+				let [prop,adj] = [ali.prop,ali.adj]//es6结构
+				classif = prop + adj
 			}
+			//提交到数据库
+			await this.messdata(classif)
+		},
+		//提交到数据库
+		messdata(classif){
+			return new Promise((resolve,reject) => {
+				//把所有需要提交的数据以对象的形式提交
+				var messArray = {
+					usermess: this.Comment,//评价内容
+					time: time,//提交的时间
+					nickname: this.nickname,//用户昵称
+					avatarUrl: this.avatarUrl//用户头像
+				}
+				message.add({
+					data: {
+						id: this.id,
+						classMessage: classif, //分析词
+						messageData: messArray //数据
+					}
+				}).then((res) => {
+					let tip = '评论成功';
+					let icon = 'success';
+					this.tips(tip, icon);
+					//清空输入框
+					this.Comment = ''
+					//评价成功刷新评价
+					let className = '全部'
+					this.$parent.fatherMethod(className)
+					this.num = 0
+					this.box = false
+				}).catch((err) => {
+					console.log(err)
+				})
+			})
+		},
+		//调用云函数到百度云分析处理返回标签
+		aiMessage(){
+			return new Promise((resolve,reject) => {
+				wx.cloud.callFunction({
+					name:'aimessage',
+					data:{
+						message:this.Comment
+					}
+				}).then((res) => {
+					let aidata = res.result.aimessage.items
+					resolve(aidata)
+				}).catch((err) => {
+					reject('出错了')
+				})
+			})
+		},
+		//点击取消，隐藏评论框
+		messcancel() {
+			this.box = false;
+		},
+		tips(tip, icon) {
+			this.HMmessages.show(tip, {
+				icon: icon,
+				iconColor: '#ffffff',
+				fontColor: '#ffffff',
+				background: 'rgba(102,0,51,0.8)'
+			});
+		}
+	},
+		
+	watch:{
+		//添加一个“全部”分词
+		messageWord(newValue,oldValue){
+			this.newMessageWord = ['全部',...newValue]
+		},
+		dataId(newValue,oldValue){
+			console.log(newValue);
+			this.id = newValue;
 		}
 	}
+};
 </script>
 
 <style scoped>
@@ -180,7 +296,7 @@
 	right: 0;
 	left: 0;
 	background: #f1f1f1;
-	z-index: 9999;
+	z-index: 99;
 }
 .Comment-text {
 	background: #ffffff;
