@@ -5,7 +5,7 @@
 			<view class="search-code"><image src="../../../static/tab/saoma.svg" mode="widthFix"></image></view>
 			<view class="search">
 				<image src="../../../static/tab/sousuo.svg" mode="widthFix" class="search-img"></image>
-				<input type="text" placeholder="点击搜索" disabled />
+				<input type="text" placeholder="点击搜索" disabled @click="searchPage()"/>
 			</view>
 			<view class="search-code"><image src="../../../static/tab/xiaoxi.svg" mode="widthFix"></image></view>
 		</view>
@@ -41,6 +41,13 @@ export default {
 	},
 	data() {
 		return{
+		}
+	},
+	methods:{
+		searchPage(){
+			uni.navigateTo({
+				url:'../search/search'
+			})
 		}
 	}
 };
